@@ -24,10 +24,24 @@ const GameInfoOverlay = ({ info }) => {
       }`}
     >
       {(isStarting || isLoading) && (
-        <div className="text-2xl font-extrabold animate-bounce">
-          <Image src={"/Intro.png"} width={500} height={500} alt="Intro" />
+        <div className="flex flex-col items-center text-3xl font-extrabold text-slate-300 animate-bounce">
+          <Image
+            src={"/Intro.png"}
+            width={500}
+            height={500}
+            alt="Intro"
+            className="mb-4"
+          />
+          <div className="bg-slate-800 bg-opacity-75 p-4 rounded-lg shadow-lg">
+            {isLoading ? (
+              <div className="text-center">Loading...</div>
+            ) : (
+              <div className="text-center">Raise Hands to Start</div>
+            )}
+          </div>
         </div>
       )}
+
       {!isLoading && !isDetected && !isGameOver && !isStarting && (
         <div className="text-2xl font-extrabold text-slate-300 opacity-90 animate-ping font-mono">
           P A U S E D
