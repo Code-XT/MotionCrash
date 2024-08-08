@@ -23,6 +23,7 @@ export default function Home() {
   const [distance, setDistance] = useState(0);
   const [remainingLives, setRemainingLives] = useState(4);
   const [isGameOver, setIsGameOver] = useState(false);
+  const [isStarting, setIsStarting] = useState(true);
 
   useEffect(() => {
     setCarLeft(window.innerWidth / 2);
@@ -68,6 +69,7 @@ export default function Home() {
       distanceInterval = setInterval(() => {
         setDistance((prev) => prev + 1);
       }, 100);
+      setIsStarting(false);
     }
 
     return () => {
@@ -105,6 +107,19 @@ export default function Home() {
         setIsInvinsible(false);
       }, 1500);
     }
+  };
+
+  const handleRestart = () => {
+    setCarLeft(window.innerWidth / 2);
+    setIsDetected(false);
+    setDegree(0);
+    setObstacle([]);
+    setIsInvinsible(false);
+    setIsLoading(false);
+    setDistance(0);
+    setRemainingLives(4);
+    setIsGameOver(false);
+    setIsStarting(true);
   };
 
   useEffect(() => {
@@ -165,6 +180,8 @@ export default function Home() {
           distance,
           remainingLives,
           isGameOver,
+          isStarting,
+          handleRestart,
         }}
       />
     </main>
